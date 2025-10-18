@@ -1,0 +1,2 @@
+6bb9be847050ecbc204f7a2938598ebcfa02c48d93fa7f46d98a6ff30e40ea10  SCAMYNX-v1.0.0-beta1-signed.apk
+4eabcab4f5b520055e8624bb5dc476bfdb48261173bab48e57cfb672298270dd  SCAMYNX-v1.0.0-beta1-signed.aab
