@@ -1,0 +1,4 @@
+-keep class dagger.hilt.** { *; }
+-keep class javax.inject.** { *; }
+-keep class com.google.errorprone.annotations.** { *; }
+-dontwarn org.tensorflow.**

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Dark gradient background -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="125"
+                android:centerColor="#26040B"
+                android:endColor="#050104"
+                android:startColor="#170208"
+                android:type="linear" />
+        </shape>
+    </item>
+    
+    <!-- Centered logo -->
+    <item
+        android:drawable="@drawable/logo_scamynx"
+        android:gravity="center"
+        android:width="200dp"
+        android:height="200dp" />
+</layer-list>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="risk_level_safe">ایمن</string>
+    <string name="risk_level_low">ریسک کم</string>
+    <string name="risk_level_medium">ریسک متوسط</string>
+    <string name="risk_level_high">ریسک بالا</string>
+    <string name="risk_level_critical">بحرانی</string>
+</resources>

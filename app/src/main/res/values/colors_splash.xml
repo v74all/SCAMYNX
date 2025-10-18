@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="splash_background">#0D0000</color>
+    <color name="splash_accent">#FF3333</color>
+    <color name="splash_glow">#FF0000</color>
+    <color name="logo_dark">#1a1a1a</color>
+    <color name="logo_red_primary">#FF3333</color>
+    <color name="logo_red_glow">#FF6666</color>
+</resources>

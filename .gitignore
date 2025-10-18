@@ -1,0 +1,58 @@
+# Gradle
+.gradle/
+build/
+local.properties
+
+# Android Studio
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Kotlin/Java
+out/
+captures/
+
+# Generated reports
+*.hprof
+
+# OS
+.DS_Store
+Thumbs.db
+
+# API Keys & Secrets (IMPORTANT: Never commit these!)
+secrets.properties
+local.properties
+*.jks
+*.keystore
+google-services.json
+key.properties
+keystore.properties
+
+# Sensitive build files
+/app/release/
+/app/build/outputs/apk/
+/app/build/outputs/bundle/
+*.apk
+*.aab
+
+# User-specific files
+*.log
+*.tmp
+*.cache
+
+# Local config
+config.local.*
+
+# Build outputs for release
+*.ap_
+*.dex
+
+# Build directories (prevent large build artifacts)
+**/build/
+**/out/
+**/.gradle/
+
+# IDE files
+**/.idea/
+**/*.iml

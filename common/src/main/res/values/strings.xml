@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="risk_level_safe">Safe</string>
+    <string name="risk_level_low">Low risk</string>
+    <string name="risk_level_medium">Medium risk</string>
+    <string name="risk_level_high">High risk</string>
+    <string name="risk_level_critical">Critical</string>
+</resources>

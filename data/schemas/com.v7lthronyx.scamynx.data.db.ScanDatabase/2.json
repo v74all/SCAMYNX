@@ -1,0 +1,171 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "8fc20cb13312626d45a9240c8e1963f2",
+    "entities": [
+      {
+        "tableName": "scans",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`scan_id` TEXT NOT NULL, `normalized_url` TEXT NOT NULL, `risk_score` REAL NOT NULL, `breakdown_json` TEXT NOT NULL, `network_json` TEXT, `ml_json` TEXT, `created_at` INTEGER NOT NULL, PRIMARY KEY(`scan_id`))",
+        "fields": [
+          {
+            "fieldPath": "scanId",
+            "columnName": "scan_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "normalizedUrl",
+            "columnName": "normalized_url",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "riskScore",
+            "columnName": "risk_score",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "breakdownJson",
+            "columnName": "breakdown_json",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "networkJson",
+            "columnName": "network_json",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mlJson",
+            "columnName": "ml_json",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "createdAtEpochMillis",
+            "columnName": "created_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "scan_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "vendor_verdicts",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`scan_id` TEXT NOT NULL, `provider` TEXT NOT NULL, `status` TEXT NOT NULL, `score` REAL NOT NULL, `details_json` TEXT NOT NULL, PRIMARY KEY(`scan_id`, `provider`))",
+        "fields": [
+          {
+            "fieldPath": "scanId",
+            "columnName": "scan_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "provider",
+            "columnName": "provider",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "score",
+            "columnName": "score",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "detailsJson",
+            "columnName": "details_json",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "scan_id",
+            "provider"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "threat_indicators",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`indicator_id` TEXT NOT NULL, `url` TEXT NOT NULL, `risk_score` REAL NOT NULL, `tags_json` TEXT NOT NULL, `last_seen_epoch` INTEGER, `source` TEXT NOT NULL, `fetched_at_epoch` INTEGER NOT NULL, PRIMARY KEY(`indicator_id`))",
+        "fields": [
+          {
+            "fieldPath": "indicatorId",
+            "columnName": "indicator_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "url",
+            "columnName": "url",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "riskScore",
+            "columnName": "risk_score",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tagsJson",
+            "columnName": "tags_json",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastSeenEpochMillis",
+            "columnName": "last_seen_epoch",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "source",
+            "columnName": "source",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fetchedAtEpochMillis",
+            "columnName": "fetched_at_epoch",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "indicator_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8fc20cb13312626d45a9240c8e1963f2')"
+    ]
+  }
+}
