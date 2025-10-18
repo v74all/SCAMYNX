@@ -5,6 +5,8 @@
 **Developer:** Aiden ([V7LTHRONYX](https://github.com/v74all))  
 **License:** MIT
 
+> 📖 **[فارسی](README_FA.md)** | **English**
+
 ---
 
 A powerful, native Kotlin scam detection platform for Android. SCAMYNX analyzes URLs, files, VPN configurations, and Instagram profiles using advanced threat intelligence, on-device machine learning, and comprehensive security checks.
