@@ -65,6 +65,43 @@ class ScanWorkScheduler @Inject constructor(
         )
     }
 
+    fun updateTelemetrySync(isOptedIn: Boolean) {
+        if (!isOptedIn) {
+            workManager.cancelUniqueWork(TelemetrySyncWorker.UNIQUE_NAME)
+            return
+        }
+
+        val workRequest = PeriodicWorkRequestBuilder<TelemetrySyncWorker>(
+            30, TimeUnit.MINUTES,
+            5, TimeUnit.MINUTES,
+        )
+            .setConstraints(
+                Constraints.Builder()
+                    .setRequiredNetworkType(NetworkType.CONNECTED)
+                    .build(),
+            )
+            .build()
+
+        workManager.enqueueUniquePeriodicWork(
+            TelemetrySyncWorker.UNIQUE_NAME,
+            ExistingPeriodicWorkPolicy.UPDATE,
+            workRequest,
+        )
+    }
+
+    fun schedulePrivacyBaselineRefresh() {
+        val workRequest = PeriodicWorkRequestBuilder<PrivacyBaselineRefreshWorker>(
+            24, TimeUnit.HOURS,
+            4, TimeUnit.HOURS,
+        ).build()
+
+        workManager.enqueueUniquePeriodicWork(
+            PrivacyBaselineRefreshWorker.UNIQUE_NAME,
+            ExistingPeriodicWorkPolicy.KEEP,
+            workRequest,
+        )
+    }
+
     fun cancelScan(workId: UUID) {
         workManager.cancelWorkById(workId)
     }

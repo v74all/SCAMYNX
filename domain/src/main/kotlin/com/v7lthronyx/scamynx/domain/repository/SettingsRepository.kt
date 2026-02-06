@@ -15,4 +15,6 @@ interface SettingsRepository {
     suspend fun updateTheme(useDarkTheme: Boolean)
     suspend fun updateDynamicColor(useDynamicColor: Boolean)
     suspend fun updateTelemetryOptIn(optIn: Boolean)
+    suspend fun setOnboardingComplete()
+    suspend fun isOnboardingComplete(): Boolean
 }

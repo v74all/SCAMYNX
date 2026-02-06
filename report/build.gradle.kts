@@ -9,7 +9,7 @@ plugins {
 
 android {
     namespace = "com.v7lthronyx.scamynx.report"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 23

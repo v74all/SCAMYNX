@@ -7,6 +7,7 @@ import com.v7lthronyx.scamynx.domain.repository.SettingsState
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 @Singleton
@@ -30,6 +31,14 @@ class SettingsRepositoryImpl @Inject constructor(
 
     override suspend fun updateTelemetryOptIn(optIn: Boolean) {
         dataSource.update { it.copy(telemetryOptIn = optIn) }
+    }
+
+    override suspend fun setOnboardingComplete() {
+        dataSource.update { it.copy(onboardingComplete = true) }
+    }
+
+    override suspend fun isOnboardingComplete(): Boolean {
+        return dataSource.data.first().onboardingComplete
     }
 }
 

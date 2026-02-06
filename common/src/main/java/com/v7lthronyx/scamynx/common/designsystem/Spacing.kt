@@ -21,6 +21,12 @@ data class ScamynxSpacing(
     val xl: Dp = 32.dp,
     val xxl: Dp = 40.dp,
     val gutter: Dp = 56.dp,
+    // Aliases for compatibility
+    val small: Dp = 12.dp,
+    val medium: Dp = 16.dp,
+    val large: Dp = 24.dp,
+    val screenPadding: Dp = 16.dp,
+    val cardPadding: Dp = 16.dp,
 )
 
 internal val LocalScamynxSpacing = staticCompositionLocalOf { ScamynxSpacing() }

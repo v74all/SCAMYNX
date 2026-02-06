@@ -852,6 +852,7 @@ private fun providerLabel(provider: Provider): String {
         Provider.VPN_CONFIG -> R.string.provider_vpn_config
         Provider.INSTAGRAM -> R.string.provider_instagram
         Provider.LOCAL_HEURISTIC -> R.string.provider_local_heuristics
+        Provider.CHAT_GPT -> R.string.provider_chat_gpt
         Provider.MANUAL -> R.string.provider_manual
     }
     return stringResource(id = resId)

@@ -8,4 +8,5 @@ data class SettingsPreferences(
     val useDarkTheme: Boolean = true,
     val useDynamicColor: Boolean = true,
     val telemetryOptIn: Boolean = false,
+    val onboardingComplete: Boolean = false,
 )

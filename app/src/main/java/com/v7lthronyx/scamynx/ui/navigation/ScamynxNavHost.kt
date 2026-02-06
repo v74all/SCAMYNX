@@ -16,6 +16,13 @@ import com.v7lthronyx.scamynx.ui.history.HistoryRoute
 import com.v7lthronyx.scamynx.ui.results.ResultsRoute
 import com.v7lthronyx.scamynx.ui.settings.SettingsRoute
 import com.v7lthronyx.scamynx.ui.about.AboutRoute
+import com.v7lthronyx.scamynx.ui.breachmonitoring.BreachMonitoringRoute
+import com.v7lthronyx.scamynx.ui.devicehardening.DeviceHardeningRoute
+import com.v7lthronyx.scamynx.ui.networkmonitor.NetworkMonitorRoute
+import com.v7lthronyx.scamynx.ui.permissionaudit.PermissionAuditRoute
+import com.v7lthronyx.scamynx.ui.qrscanner.QRScannerRoute
+import com.v7lthronyx.scamynx.ui.securityscore.SecurityScoreRoute
+import com.v7lthronyx.scamynx.ui.threatintel.ThreatIntelRoute
 import java.util.Locale
 
 enum class ScamynxDestination(val route: String) {
@@ -24,6 +31,13 @@ enum class ScamynxDestination(val route: String) {
     Settings("settings"),
     About("about"),
     Results("results/{$RESULTS_SESSION_ID_KEY}"),
+    ThreatIntel("threat_intel"),
+    QRScanner("qr_scanner"),
+    NetworkMonitor("network_monitor"),
+    PermissionAudit("permission_audit"),
+    BreachMonitoring("breach_monitoring"),
+    SecurityScore("security_score"),
+    DeviceHardening("device_hardening"),
 }
 
 private const val RESULTS_SESSION_ID_KEY = "sessionId"
@@ -49,6 +63,13 @@ fun ScamynxNavHost(
                     onNavigateToResults = { sessionId ->
                         navController.navigate(resultsRoute(sessionId))
                     },
+                    onNavigateToThreatIntel = { navController.navigate(ScamynxDestination.ThreatIntel.route) },
+                    onNavigateToQRScanner = { navController.navigate(ScamynxDestination.QRScanner.route) },
+                    onNavigateToNetworkMonitor = { navController.navigate(ScamynxDestination.NetworkMonitor.route) },
+                    onNavigateToPermissionAudit = { navController.navigate(ScamynxDestination.PermissionAudit.route) },
+                    onNavigateToBreachMonitoring = { navController.navigate(ScamynxDestination.BreachMonitoring.route) },
+                    onNavigateToSecurityScore = { navController.navigate(ScamynxDestination.SecurityScore.route) },
+                    onNavigateToDeviceHardening = { navController.navigate(ScamynxDestination.DeviceHardening.route) },
                 )
             }
             composable(route = ScamynxDestination.History.route) {
@@ -75,6 +96,27 @@ fun ScamynxNavHost(
                 arguments = listOf(navArgument(RESULTS_SESSION_ID_KEY) { type = NavType.StringType }),
             ) {
                 ResultsRoute(onBack = { navController.popBackStack() })
+            }
+            composable(route = ScamynxDestination.ThreatIntel.route) {
+                ThreatIntelRoute(onBack = { navController.popBackStack() })
+            }
+            composable(route = ScamynxDestination.QRScanner.route) {
+                QRScannerRoute(onBack = { navController.popBackStack() })
+            }
+            composable(route = ScamynxDestination.NetworkMonitor.route) {
+                NetworkMonitorRoute(onBack = { navController.popBackStack() })
+            }
+            composable(route = ScamynxDestination.PermissionAudit.route) {
+                PermissionAuditRoute(onBack = { navController.popBackStack() })
+            }
+            composable(route = ScamynxDestination.BreachMonitoring.route) {
+                BreachMonitoringRoute(onBack = { navController.popBackStack() })
+            }
+            composable(route = ScamynxDestination.SecurityScore.route) {
+                SecurityScoreRoute(onBack = { navController.popBackStack() })
+            }
+            composable(route = ScamynxDestination.DeviceHardening.route) {
+                DeviceHardeningRoute(onBack = { navController.popBackStack() })
             }
         }
     }

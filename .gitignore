@@ -28,6 +28,11 @@ local.properties
 google-services.json
 key.properties
 keystore.properties
+KEYSTORE_INFO.md
+keystore-certificate-info.txt
+
+# Supabase local state (contains project refs and credentials)
+supabase/.temp/
 
 # Sensitive build files
 /app/release/
@@ -51,8 +56,15 @@ config.local.*
 # Build directories (prevent large build artifacts)
 **/build/
 **/out/
+**/bin/
 **/.gradle/
 
 # IDE files
 **/.idea/
 **/*.iml
+
+# Continue IDE extension
+.continue/
+
+# VSCode workspace settings (may contain local paths)
+.vscode/

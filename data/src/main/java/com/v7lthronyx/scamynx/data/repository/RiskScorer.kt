@@ -264,6 +264,7 @@ internal object RiskScorer {
         Provider.VPN_CONFIG -> 0.7
         Provider.INSTAGRAM -> 0.7
         Provider.LOCAL_HEURISTIC -> 0.6
+        Provider.CHAT_GPT -> 0.85
         Provider.MANUAL -> 0.5
     }
 

@@ -1,13 +1,13 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("com.android.test")
+    alias(libs.plugins.android.test)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.baselineprofile)
 }
 
 android {
     namespace = "com.v7lthronyx.scamynx.baselineprofile"
-    compileSdk = 34
+    compileSdk = 36
 
     targetProjectPath = ":app"
 

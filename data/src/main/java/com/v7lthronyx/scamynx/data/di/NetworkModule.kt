@@ -188,25 +188,6 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    @TelemetryClient
-    fun provideTelemetryRetrofit(
-        baseClient: OkHttpClient,
-        credentials: ApiCredentials,
-        @ThreatIntelJson json: Json,
-    ): Retrofit? {
-        val endpoint = credentials.telemetryEndpoint?.takeIf { it.isNotBlank() } ?: return null
-        return runCatching {
-            buildRetrofit(
-                baseClient = baseClient,
-                additionalInterceptors = emptyList(),
-                baseUrl = endpoint.ensureTrailingSlash(),
-                json = json,
-            )
-        }.getOrNull()
-    }
-
-    @Provides
-    @Singleton
     fun provideVirusTotalApi(@VirusTotalClient retrofit: Retrofit): VirusTotalApi = retrofit.create(VirusTotalApi::class.java)
 
     @Provides
@@ -229,10 +210,6 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideThreatFoxApi(@ThreatFoxClient retrofit: Retrofit): ThreatFoxApi = retrofit.create(ThreatFoxApi::class.java)
-
-    @Provides
-    @Singleton
-    fun provideTelemetryApi(@TelemetryClient retrofit: Retrofit?): TelemetryApi? = retrofit?.create(TelemetryApi::class.java)
 }
 
 private fun buildRetrofit(

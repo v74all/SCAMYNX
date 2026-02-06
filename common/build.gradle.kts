@@ -2,13 +2,14 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
 }
 
 android {
     namespace = "com.v7lthronyx.scamynx.common"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 23

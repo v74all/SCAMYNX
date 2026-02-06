@@ -28,7 +28,9 @@ val ScamynxTertiary90 = Color(0xFF9BECDC)
 // -------------------- Neutral Scale --------------------
 val ScamynxNeutral5 = Color(0xFF070A12)
 val ScamynxNeutral10 = Color(0xFF111520)
+val ScamynxNeutral15 = Color(0xFF161B28)
 val ScamynxNeutral20 = Color(0xFF1C2331)
+val ScamynxNeutral25 = Color(0xFF222A3A)
 val ScamynxNeutral30 = Color(0xFF283243)
 val ScamynxNeutral40 = Color(0xFF353F53)
 val ScamynxNeutral50 = Color(0xFF444F65)
@@ -39,6 +41,18 @@ val ScamynxNeutral90 = Color(0xFFE6E9F3)
 val ScamynxNeutral95 = Color(0xFFF3F5FA)
 val ScamynxNeutral97 = Color(0xFFF8FAFE)
 val ScamynxNeutral99 = Color(0xFFFEFEFF)
+
+// -------------------- Chrome / Holographic / Particle Colors --------------------
+val ScamynxChromePurple30 = Color(0xFF6B4DFF)
+val ScamynxChromePurple40 = Color(0xFF8B6DFF)
+val ScamynxChromePurple50 = Color(0xFFAB8DFF)
+val ScamynxBioBlue = Color(0xFF4AA8FF)
+val ScamynxHoloCyan = Color(0xFF00F0FF)
+val ScamynxHoloPink = Color(0xFFFF00FF)
+val ScamynxParticleCyan = Color(0xFF00E5FF)
+val ScamynxParticleViolet = Color(0xFFAA66FF)
+val ScamynxParticleMagenta = Color(0xFFFF00AA)
+val ScamynxOrbCyanCenter = Color(0xFF00FFE0)
 
 // -------------------- Status & Semantic Colors --------------------
 val ScamynxSignalGreen = Color(0xFF1FC89F)

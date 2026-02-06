@@ -1,0 +1,3 @@
+<resources>
+    <dimen name="phishing_overlay_margin_top">32dp</dimen>
+</resources>

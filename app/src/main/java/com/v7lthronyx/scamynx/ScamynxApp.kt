@@ -28,6 +28,8 @@ class ScamynxApp : Application(), Configuration.Provider {
         super.onCreate()
         applyPersistedLocale()
         scanWorkScheduler.scheduleThreatFeedSync()
+        scanWorkScheduler.schedulePrivacyBaselineRefresh()
+        configureTelemetryWork()
     }
 
     override val workManagerConfiguration: Configuration
@@ -58,5 +60,10 @@ class ScamynxApp : Application(), Configuration.Provider {
                 AppCompatDelegate.setApplicationLocales(locales)
             }
         }
+    }
+
+    private fun configureTelemetryWork() {
+        val telemetryOptIn = runBlocking { settingsRepository.settings.first().telemetryOptIn }
+        scanWorkScheduler.updateTelemetrySync(telemetryOptIn)
     }
 }

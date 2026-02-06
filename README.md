@@ -1,7 +1,6 @@
-````markdown
 # 🛡️ SCAMYNX (Android)
 
-**Version:** 1.0.0-beta1  
+**Version:** 1.0.0-beta2  
 **Developer:** Aiden ([V7LTHRONYX](https://github.com/v74all))  
 **License:** MIT
 
@@ -25,6 +24,7 @@ A powerful, native Kotlin scam detection platform for Android. SCAMYNX analyzes 
 - ✅ **Network Security Analysis** - TLS, SSL certificates, security headers
 - ✅ **Fuzzy Risk Scoring** - Sophisticated risk categorization algorithm
 - ✅ **Real-time Updates** - Background threat feed synchronization
+- 🔬 **Privacy Radar (in progress)** - Real-time permission/resource monitoring with behavioral anomaly detection ([spec](docs/PRIVACY_RADAR.md))
 
 ### 🎨 Modern UI
 - Material 3 Design with Jetpack Compose
@@ -96,7 +96,46 @@ A powerful, native Kotlin scam detection platform for Android. SCAMYNX analyzes 
    GOOGLE_SAFE_BROWSING_API_KEY=your_actual_google_key
    URLSCAN_API_KEY=your_actual_urlscan_key
    SCAMYNX_TELEMETRY_ENDPOINT=
+   SUPABASE_URL=https://your-project-id.supabase.co
+   SUPABASE_ANON_KEY=your_supabase_client_anon_key
+   SUPABASE_FUNCTION_JWT= # optional: restricted JWT for invoking edge functions
    ```
+   > ❗️ Never commit `secrets.properties`. The app reads these values at build time via the Secrets Gradle Plugin.
+
+4. **Configure Supabase (Threat Feed + AI Gateway)**
+
+   1. Create a Supabase project and note the **Project URL** and **anon public key** (use them above).
+   2. In SQL Editor, create the shared indicator table:
+      ```sql
+      create table if not exists public.threat_indicators (
+        indicator_id text primary key,
+        url text not null,
+        risk_score double precision not null,
+        tags text[] default '{}',
+        last_seen timestamptz,
+        source text not null,
+        fetched_at timestamptz default now()
+      );
+      ```
+   3. Enable Row Level Security and add policies so authenticated (anon) clients can `select` while inserts are restricted to service role or edge functions:
+      ```sql
+      alter table public.threat_indicators enable row level security;
+      create policy "Allow read for anon" on public.threat_indicators
+        for select using (true);
+      ```
+   4. Deploy an Edge Function (e.g. `threat-intel-ai`) that wraps your AI analysis logic. Store secrets safely on Supabase:
+      ```bash
+      supabase secrets set OPENAI_API_KEY=sk-xxxxx
+      ```
+      The function can read the key via `Deno.env.get("OPENAI_API_KEY")`. Keep `OPENAI_API_KEY` empty in production Android builds so the client relies on the backend.
+   5. (Optional) If your function requires a signed JWT, create a [Function](https://supabase.com/docs/guides/functions/quickstart) with `verify_jwt()` and provide a restrictive token via `SUPABASE_FUNCTION_JWT`. Otherwise leave it blank and the anon key will be used.
+
+### 🔐 Safe AI Key Management
+
+- The Android client **never** persists the OpenAI API key.
+- All AI enrichment requests are proxied through the Supabase Edge Function. Keep the key in Supabase secrets (or your own secure backend) and rotate it regularly.
+- For local experimentation you may set `OPENAI_API_KEY` in `secrets.properties`, but strip it out before distributing builds. Ship production builds with this value blank so the client relies solely on the Supabase function.
+- If you provide `OPENAI_API_KEY` locally, the new ChatGPT co-pilot will fuse its verdict with the on-device model and heuristics to generate richer insights. Leaving it blank simply skips the co-pilot while keeping the rest of the scan pipeline intact.
    
    **Get API Keys:**
    - [VirusTotal API](https://www.virustotal.com/gui/user/[username]/apikey)
@@ -223,4 +262,3 @@ If you find this project useful, please consider giving it a star ⭐
 ---
 
 **Made with ❤️ in Iran 🇮🇷**
-

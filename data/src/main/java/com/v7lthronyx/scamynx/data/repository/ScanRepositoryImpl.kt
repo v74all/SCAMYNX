@@ -1,5 +1,6 @@
 package com.v7lthronyx.scamynx.data.repository
 
+import com.v7lthronyx.scamynx.data.ai.AiCoPilot
 import com.v7lthronyx.scamynx.data.analyzer.FileStaticAnalyzer
 import com.v7lthronyx.scamynx.data.analyzer.InstagramScamAnalyzer
 import com.v7lthronyx.scamynx.data.analyzer.VpnConfigAnalyzer
@@ -83,6 +84,7 @@ class ScanRepositoryImpl @Inject constructor(
     private val fileStaticAnalyzer: FileStaticAnalyzer,
     private val vpnConfigAnalyzer: VpnConfigAnalyzer,
     private val instagramAnalyzer: InstagramScamAnalyzer,
+    private val aiCoPilot: AiCoPilot,
     private val scanDao: ScanDao,
     private val urlNormalizer: UrlNormalizer,
     private val credentials: ApiCredentials,
@@ -158,10 +160,28 @@ class ScanRepositoryImpl @Inject constructor(
             Triple(vendors, networkResult, mlResult)
         }
 
+        // AI Co-Pilot Analysis (Groq → OpenAI fallback)
+        progress(ScanStage.AGGREGATING, "AI Analysis...")
+        val aiVerdict = runCatching {
+            aiCoPilot.analyzeUrl(
+                url = normalizedUrl,
+                vendorVerdicts = vendorVerdicts,
+                networkReport = networkReport,
+                mlReport = mlReport,
+            )
+        }.getOrNull()
+
+        // Combine vendor verdicts with AI verdict
+        val allVerdicts = if (aiVerdict != null) {
+            vendorVerdicts + aiVerdict
+        } else {
+            vendorVerdicts
+        }
+
         progress(ScanStage.AGGREGATING, null)
         val (riskScore, breakdown) = RiskScorer.aggregateRisk(
             targetType = ScanTargetType.URL,
-            vendorVerdicts = vendorVerdicts,
+            vendorVerdicts = allVerdicts,
             mlReport = mlReport,
             networkReport = networkReport,
             fileReport = null,
@@ -174,7 +194,7 @@ class ScanRepositoryImpl @Inject constructor(
             targetType = ScanTargetType.URL,
             targetLabel = normalizedUrl,
             normalizedUrl = normalizedUrl,
-            vendors = vendorVerdicts,
+            vendors = allVerdicts,
             network = networkReport,
             ml = mlReport,
             file = null,

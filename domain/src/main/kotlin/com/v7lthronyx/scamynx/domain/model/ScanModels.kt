@@ -64,6 +64,9 @@ enum class Provider {
     @SerialName("local_heuristic")
     LOCAL_HEURISTIC,
 
+    @SerialName("chat_gpt")
+    CHAT_GPT,
+
     @SerialName("manual")
     MANUAL,
 }

@@ -5,6 +5,7 @@ import java.io.FileInputStream
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
     alias(libs.plugins.secrets)
@@ -20,18 +21,20 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace = "com.v7lthronyx.scamynx"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.v7lthronyx.scamynx"
         minSdk = 23
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0.0-beta1"
+        versionCode = (findProperty("app.versionCode") as String).toInt()
+        versionName = findProperty("app.versionName") as String
 
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        buildConfigField("Boolean", "PRIVACY_RADAR_ENABLED", "true")
     }
 
     signingConfigs {
@@ -149,6 +152,8 @@ dependencies {
 
     implementation(libs.datastore.preferences)
     implementation(libs.datastore.proto)
+
+    implementation(libs.accompanist.permissions)
 
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging.interceptor)

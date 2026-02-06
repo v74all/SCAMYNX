@@ -2,7 +2,7 @@
     <string name="app_name">SCAMYNX</string>
     <string name="home_title">SCAMYNX</string>
     <string name="brand_title">Beta v1.0 • Real-time Scam Detection</string>
-    <string name="brand_subtitle">Analyze URLs with multi-layer threat intelligence. Instagram scan &amp; AI telemetry coming soon.</string>
+    <string name="brand_subtitle">Analyze URLs, files, VPN configs &amp; Instagram profiles with multi-layer threat intelligence.</string>
     <string name="home_prompt">Paste or type a URL to begin analysis</string>
     <string name="home_url_label">URL</string>
     <string name="home_url_placeholder">https://example.com</string>
@@ -44,7 +44,7 @@
     <string name="home_vpn_label_placeholder">My V2Ray profile</string>
     <string name="home_vpn_config_label">Configuration</string>
     <string name="home_vpn_config_placeholder">Paste vmess/vless/trojan config or JSON</string>
-    <string name="home_instagram_title">Check an Instagram profile (Coming Soon)</string>
+    <string name="home_instagram_title">Check an Instagram profile</string>
     <string name="home_instagram_handle_label">Handle</string>
     <string name="home_instagram_handle_placeholder">@example or profile link</string>
     <string name="home_instagram_display_name">Display name (optional)</string>
@@ -143,6 +143,7 @@
     <string name="provider_vpn_config">VPN config scan</string>
     <string name="provider_instagram">Instagram heuristics</string>
     <string name="provider_local_heuristics">Local heuristics</string>
+    <string name="provider_chat_gpt">ChatGPT AI</string>
     <string name="provider_manual">Manual</string>
     <string name="vendor_status_clean">No issues</string>
     <string name="vendor_status_suspicious">Suspicious</string>
@@ -162,7 +163,7 @@
     <string name="settings_language_note">Applies instantly across the app.</string>
     <string name="about_title">About SCAMYNX</string>
     <string name="about_brand_heading">V7LTHRONYX</string>
-    <string name="about_brand_body">SCAMYNX Beta v1.0 is the native Android security companion from V7LTHRONYX. Currently supports URL analysis with multi-layer threat intelligence. Instagram scanning and AI telemetry features are in development.</string>
+    <string name="about_brand_body">SCAMYNX Beta v1.0 is the native Android security companion from V7LTHRONYX. Supports URL, file, VPN config, and Instagram profile analysis with multi-layer threat intelligence and on-device ML.</string>
     <string name="about_mission_heading">Mission</string>
     <string name="about_mission_body">We believe safer browsing should be fast, transparent, and private. Every scan runs locally, with external lookups triggered only when you decide.</string>
     <string name="about_social_heading">Connect with us</string>
@@ -180,7 +181,7 @@
     <string name="home_error_file_access">Unable to read the selected file.</string>
     <string name="home_error_file_too_large">Files larger than %1$d MB are not supported.</string>
     <string name="home_error_scan_failed">Scan failed</string>
-    <string name="home_beta_notice">BETA v1.0 - Instagram scan and AI telemetry features are in development</string>
+    <string name="home_beta_notice">BETA v1.0 - Advanced AI telemetry features coming in next update</string>
     <string name="home_feature_coming_soon">Coming Soon in Next Update</string>
     <string name="scan_progress_percent">%1$d%% complete</string>
     <string name="scan_stage_initializing">Initializing</string>
@@ -194,4 +195,198 @@
     <string name="scan_stage_aggregating">Aggregating results</string>
     <string name="scan_stage_completed">Finalizing report</string>
     <string name="scan_stage_failed">Scan interrupted</string>
+    
+    <!-- Phishing Overlay -->
+    <string name="phishing_overlay_open_app">Open App</string>
+    <string name="phishing_overlay_dismiss">Dismiss</string>
+    
+    <!-- Threat Intel -->
+    <string name="threat_intel_landscape">Threat Landscape</string>
+    <string name="threat_intel_indicators">Indicators</string>
+    <string name="threat_intel_active_feeds">Active Feeds</string>
+    <string name="threat_intel_today">Today</string>
+    <string name="threat_intel_feed_active">Active</string>
+    <string name="threat_intel_malicious">Malicious</string>
+    <string name="threat_intel_safe">Safe</string>
+    <string name="threat_intel_recent_threats">Recent Threats</string>
+    <string name="threat_intel_no_threats">No Threats</string>
+    <string name="threat_intel_feeds_clean">All feeds are clean</string>
+    <string name="cd_threat_level_indicator">Threat Level Indicator</string>
+    
+    <!-- Privacy Radar -->
+    <string name="PRIVACY_RADAR_ENABLED">Privacy Radar is enabled</string>
+    <string name="privacy_radar_channel_name">Privacy Radar</string>
+    <string name="privacy_radar_channel_description">Privacy monitoring alerts</string>
+    <string name="privacy_radar_alert_title">Privacy Alert</string>
+    <string name="privacy_radar_alert_body">An app is accessing sensitive resources</string>
+    <string name="privacy_radar_resource_camera">Camera</string>
+    <string name="privacy_radar_resource_microphone">Microphone</string>
+    <string name="privacy_radar_resource_location">Location</string>
+    <string name="privacy_radar_resource_link">Link</string>
+    <string name="privacy_radar_resource_wifi">WiFi</string>
+    <string name="privacy_radar_resource_generic">Resource</string>
+    
+    <!-- Phishing Overlay Extended -->
+    <string name="phishing_overlay_unknown_url">Unknown URL</string>
+    <string name="phishing_overlay_title">Warning: Suspicious Link</string>
+    <string name="phishing_overlay_body">This link may be dangerous. Proceed with caution.</string>
+    <string name="phishing_overlay_level_label">Risk Level: %1$s</string>
+    <string name="phishing_overlay_score_label">Score: %1$d%%</string>
+    
+    <!-- Breach Monitoring -->
+    <string name="breach_monitoring_title">Breach Monitoring</string>
+    <string name="breach_monitoring_refresh">Refresh</string>
+    <string name="breach_monitoring_check_email">Check Email</string>
+    <string name="breach_monitoring_email_label">Email Address</string>
+    <string name="breach_monitoring_check_phone">Check Phone Number</string>
+    <string name="breach_monitoring_phone_label">Phone Number</string>
+    <string name="breach_monitoring_summary_title">Monitoring Summary</string>
+    <string name="breach_monitoring_email_checks">Email Breach Checks</string>
+    <string name="breach_monitoring_subtitle">Monitor your accounts for data breaches and credential leaks in real-time.</string>
+    <string name="breach_monitoring_check_button">Check Now</string>
+    <string name="breach_monitoring_exposed_count">Found in %1$s data breaches</string>
+    <string name="breach_monitoring_not_exposed">No known exposures found</string>
+    <string name="breach_monitoring_recommendations">Security Recommendations</string>
+    <string name="breach_monitoring_total_exposures">Total Exposures</string>
+    <string name="breach_monitoring_critical_exposures">%1$d critical exposures require immediate action</string>
+    <string name="breach_monitoring_error_generic">Unable to load breach monitoring data. Please try again.</string>
+    <string name="breach_monitoring_error_empty_email">Please enter an email address</string>
+    <string name="breach_monitoring_error_check_failed">Breach check failed. Please try again.</string>
+    <string name="breach_monitoring_error_empty_phone">Please enter a phone number</string>
+    <string name="breach_monitoring_error_enable_failed">Failed to enable monitoring. Please try again.</string>
+
+    <!-- Device Hardening -->
+    <string name="device_hardening_title">Device Hardening</string>
+    <string name="device_hardening_refresh">Refresh</string>
+    <string name="device_hardening_security_improvement">Security Improvement</string>
+    <string name="device_hardening_recommended_count">%1$d recommended actions</string>
+    <string name="device_hardening_apply_all">Apply All Recommended</string>
+    <string name="device_hardening_recommended_title">Recommended Actions</string>
+    <string name="device_hardening_all_actions_title">All Available Actions</string>
+    <string name="device_hardening_applied">Applied</string>
+    <string name="device_hardening_reversible">Reversible</string>
+    <string name="device_hardening_apply">Apply</string>
+    <string name="device_hardening_error_generic">Unable to analyze device security. Please try again.</string>
+    <string name="device_hardening_error_apply">Failed to apply hardening action. Please try again.</string>
+
+    <!-- Home Privacy Radar -->
+    <string name="home_api_status_empty">No threat intelligence providers configured</string>
+    <string name="home_privacy_radar_title">Privacy Radar</string>
+    <string name="home_privacy_radar_disabled">Privacy Radar is disabled</string>
+    <string name="home_privacy_radar_battery">Paused due to battery saver mode</string>
+    <string name="home_privacy_radar_running">Actively monitoring privacy events</string>
+    <string name="home_privacy_radar_starting">Privacy Radar is starting…</string>
+    <string name="home_privacy_radar_error">Privacy Radar encountered an error</string>
+    <string name="home_privacy_radar_off">Privacy Radar is off</string>
+    <string name="home_privacy_radar_enable">Enable</string>
+    <string name="home_privacy_radar_open_settings">Settings</string>
+
+    <!-- Password Security Card -->
+    <string name="home_password_card_title">Password Security</string>
+    <string name="home_password_card_subtitle">Check if your password has been exposed in known data breaches.</string>
+    <string name="home_password_placeholder">Enter password to check</string>
+    <string name="home_password_button_checking">Checking…</string>
+    <string name="home_password_button_check">Check Password</string>
+    <string name="home_password_strength_label">Password Strength</string>
+    <string name="home_password_entropy_bits">Entropy: %.1f bits</string>
+    <string name="home_password_breach_detected">⚠️ Found in %1$s known breaches!</string>
+    <string name="home_password_breach_safe">✓ Not found in any known breaches</string>
+    <string name="home_password_warnings_title">Warnings</string>
+    <string name="home_password_recommendations_title">Recommendations</string>
+    <string name="home_password_strength_strong">Strong</string>
+    <string name="home_password_strength_medium">Medium</string>
+    <string name="home_password_strength_weak">Weak</string>
+    <string name="home_password_strength_very_weak">Very Weak</string>
+    <string name="home_password_warning_common_word">Contains common words or patterns</string>
+    <string name="home_password_warning_too_short">Password is too short</string>
+    <string name="home_password_warning_no_numbers">Missing numeric characters</string>
+    <string name="home_password_warning_no_special">Missing special characters</string>
+    <string name="home_password_reco_length">Use at least 12 characters</string>
+    <string name="home_password_reco_variety">Mix uppercase, lowercase, numbers, and symbols</string>
+    <string name="home_password_reco_unique">Avoid reusing passwords across sites</string>
+    <string name="home_password_reco_passphrase">Consider using a passphrase</string>
+
+    <!-- Social Engineering Detection Card -->
+    <string name="home_social_card_title">Social Engineering Detection</string>
+    <string name="home_social_card_subtitle">Analyze messages for phishing, scam, or manipulation attempts.</string>
+    <string name="home_social_placeholder">Paste suspicious message here…</string>
+    <string name="home_social_button_scanning">Analyzing…</string>
+    <string name="home_social_button_scan">Analyze Message</string>
+    <string name="home_social_risk_label">Risk Level</string>
+    <string name="home_social_risk_high">High Risk</string>
+    <string name="home_social_risk_medium">Medium Risk</string>
+    <string name="home_social_risk_low">Low Risk</string>
+    <string name="home_social_risk_safe">Safe</string>
+    <string name="home_social_indicators_title">Detected Indicators</string>
+    <string name="home_social_snippets_title">Suspicious Snippets</string>
+    <string name="home_social_recommendations_title">Recommendations</string>
+    <string name="home_social_indicator_urgency">Creates urgency or pressure</string>
+    <string name="home_social_indicator_authority">Impersonates authority</string>
+    <string name="home_social_indicator_fear">Uses fear or threats</string>
+    <string name="home_social_indicator_reward">Offers too-good-to-be-true rewards</string>
+    <string name="home_social_indicator_personal_info">Requests personal information</string>
+    <string name="home_social_indicator_suspicious_link">Contains suspicious links</string>
+
+    <!-- Network Monitor -->
+    <string name="network_monitor_title">Network Monitor</string>
+    <string name="network_monitor_subtitle">Monitor network activity and detect suspicious connections.</string>
+
+    <!-- QR Scanner -->
+    <string name="qr_scanner_title">QR Scanner</string>
+    <string name="qr_scanner_subtitle">Scan and analyze QR codes for threats</string>
+    <string name="qr_toggle_flash">Toggle flash</string>
+    <string name="qr_camera_permission_title">Camera Permission Required</string>
+    <string name="qr_camera_permission_description">SCAMYNX needs camera access to scan QR codes and analyze them for potential threats.</string>
+    <string name="qr_grant_permission">Grant Permission</string>
+    <string name="qr_code_detected">QR Code Detected</string>
+    <string name="qr_copy_content">Copy content</string>
+    <string name="qr_clear">Clear</string>
+    <string name="qr_analyzing">Analyzing…</string>
+    <string name="qr_analyze_threat">Analyze Threat</string>
+
+    <!-- Security Score -->
+    <string name="security_score_title">Security Score</string>
+    <string name="security_score_refresh">Refresh security score</string>
+    <string name="security_score_share">Share Score</string>
+    <string name="security_score_components_title">Security Components</string>
+    <string name="security_score_recommendations_title">Recommendations</string>
+    <string name="security_score_error_generic">Unable to calculate security score. Please try again.</string>
+    <string name="security_status_excellent">Excellent</string>
+    <string name="security_status_good">Good</string>
+    <string name="security_status_fair">Fair</string>
+    <string name="security_status_poor">Poor</string>
+    <string name="security_status_critical">Critical</string>
+
+    <!-- Threat Intel Extended -->
+    <string name="threat_intel_title">Threat Intelligence</string>
+    <string name="threat_intel_subtitle">Real-time threat feed monitoring</string>
+    <string name="threat_intel_refresh_feeds">Refresh feeds</string>
+    <string name="threat_intel_search_hint">Search IoCs (IPs, domains, hashes)</string>
+    <string name="threat_intel_search_button">Search</string>
+    <string name="threat_intel_search_results">Search Results</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_skip">Skip</string>
+    <string name="onboarding_get_started">Get Started</string>
+    <string name="onboarding_next">Next</string>
+    <string name="onboarding_page1_title">Welcome to SCAMYNX</string>
+    <string name="onboarding_page1_description">Your personal security companion for detecting scams, phishing, and malicious content in real-time.</string>
+    <string name="onboarding_page2_title">Multi-Layer Protection</string>
+    <string name="onboarding_page2_description">Analyze URLs, files, VPN configurations, and social media profiles with advanced threat intelligence and on-device ML.</string>
+    <string name="onboarding_page3_title">Privacy First</string>
+    <string name="onboarding_page3_description">Your data stays on your device. External lookups are only triggered when you explicitly request them.</string>
+    <string name="onboarding_page4_title">Get Started</string>
+    <string name="onboarding_page4_description">You\'re all set! Start scanning URLs, files, VPN configs, and social profiles to stay protected.</string>
+
+    <!-- Permission Audit -->
+    <string name="permission_audit_title">Permission Audit</string>
+
+    <!-- Navigation -->
+    <string name="back">Back</string>
+
+    <!-- Content Descriptions -->
+    <string name="cd_refresh">Refresh</string>
+    <string name="cd_collapse">Collapse</string>
+    <string name="cd_expand">Expand</string>
+    <string name="cd_dangerous_permission">Dangerous permission</string>
 </resources>

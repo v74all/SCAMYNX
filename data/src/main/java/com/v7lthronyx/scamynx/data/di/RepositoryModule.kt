@@ -2,8 +2,10 @@ package com.v7lthronyx.scamynx.data.di
 
 import com.v7lthronyx.scamynx.data.repository.ScanRepositoryImpl
 import com.v7lthronyx.scamynx.data.repository.SettingsRepositoryImpl
+import com.v7lthronyx.scamynx.data.repository.SupabaseThreatFeedRepository
 import com.v7lthronyx.scamynx.domain.repository.ScanRepository
 import com.v7lthronyx.scamynx.domain.repository.SettingsRepository
+import com.v7lthronyx.scamynx.domain.repository.ThreatFeedRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -21,4 +23,8 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindSettingsRepository(impl: SettingsRepositoryImpl): SettingsRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindThreatFeedRepository(impl: SupabaseThreatFeedRepository): ThreatFeedRepository
 }

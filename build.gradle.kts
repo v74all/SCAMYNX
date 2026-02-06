@@ -1,15 +1,38 @@
-@Suppress("DSL_SCOPE_VIOLATION")
+
 plugins {
-    alias(libs.plugins.android.application) apply false
-    alias(libs.plugins.android.library) apply false
-    alias(libs.plugins.kotlin.android) apply false
-    alias(libs.plugins.kotlin.jvm) apply false
-    alias(libs.plugins.kotlin.serialization) apply false
-    alias(libs.plugins.hilt) apply false
-    alias(libs.plugins.ksp) apply false
-    alias(libs.plugins.secrets) apply false
+    alias(libs.plugins.spotless)
+    alias(libs.plugins.kover)
 }
 
-tasks.register<Delete>("clean") {
-    delete(rootProject.buildDir)
+spotless {
+    kotlin {
+        target("**/src/**/*.kt")
+        targetExclude("**/build/**", "**/bin/**", "**/.gradle/**")
+        ktlint("1.2.1").editorConfigOverride(
+            mapOf(
+                "ktlint_standard_no-wildcard-imports" to "disabled", // allow Compose imports
+                "ktlint_standard_filename" to "disabled",
+                "ktlint_standard_property-naming" to "disabled",
+                "ktlint_standard_backing-property-naming" to "disabled",
+                "ktlint_disabled_rules" to "filename,property-naming,backing-property-naming",
+                "ktlint_function_naming_ignore_when_annotated_with" to "Composable",
+            ),
+        )
+    }
+}
+
+kover {
+    reports {
+        filters {
+            excludes {
+                classes(
+                    "**/BuildConfig",
+                    "**/BuildConfig.*",
+                    "**/R",
+                    "**/R$*",
+                    "**/*_*Factory*",
+                )
+            }
+        }
+    }
 }

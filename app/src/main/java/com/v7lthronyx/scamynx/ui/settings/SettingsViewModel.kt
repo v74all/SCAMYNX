@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.v7lthronyx.scamynx.domain.repository.SettingsRepository
 import com.v7lthronyx.scamynx.domain.repository.SettingsState
+import com.v7lthronyx.scamynx.work.ScanWorkScheduler
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.Locale
 import javax.inject.Inject
@@ -26,6 +27,7 @@ data class SettingsUiState(
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
     private val settingsRepository: SettingsRepository,
+    private val scanWorkScheduler: ScanWorkScheduler,
 ) : ViewModel() {
 
     val state: StateFlow<SettingsUiState> = settingsRepository.settings
@@ -45,7 +47,10 @@ class SettingsViewModel @Inject constructor(
     }
 
     fun onTelemetryChanged(enabled: Boolean) {
-        viewModelScope.launch { settingsRepository.updateTelemetryOptIn(enabled) }
+        viewModelScope.launch {
+            settingsRepository.updateTelemetryOptIn(enabled)
+            scanWorkScheduler.updateTelemetrySync(enabled)
+        }
     }
 
     fun onLanguageSelected(tag: String) {

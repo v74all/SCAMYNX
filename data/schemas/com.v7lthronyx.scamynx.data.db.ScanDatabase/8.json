@@ -1,0 +1,897 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 8,
+    "identityHash": "4c3ad394072774f6f5181eb6ae43b1e5",
+    "entities": [
+      {
+        "tableName": "scans",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`scan_id` TEXT NOT NULL, `target_type` TEXT NOT NULL, `target_label` TEXT NOT NULL, `normalized_url` TEXT, `risk_score` REAL NOT NULL, `breakdown_json` TEXT NOT NULL, `network_json` TEXT, `ml_json` TEXT, `file_json` TEXT, `vpn_json` TEXT, `instagram_json` TEXT, `created_at` INTEGER NOT NULL, PRIMARY KEY(`scan_id`))",
+        "fields": [
+          {
+            "fieldPath": "scanId",
+            "columnName": "scan_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "targetType",
+            "columnName": "target_type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "targetLabel",
+            "columnName": "target_label",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "normalizedUrl",
+            "columnName": "normalized_url",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "riskScore",
+            "columnName": "risk_score",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "breakdownJson",
+            "columnName": "breakdown_json",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "networkJson",
+            "columnName": "network_json",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "mlJson",
+            "columnName": "ml_json",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "fileJson",
+            "columnName": "file_json",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "vpnJson",
+            "columnName": "vpn_json",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "instagramJson",
+            "columnName": "instagram_json",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "createdAtEpochMillis",
+            "columnName": "created_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "scan_id"
+          ]
+        }
+      },
+      {
+        "tableName": "vendor_verdicts",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`scan_id` TEXT NOT NULL, `provider` TEXT NOT NULL, `status` TEXT NOT NULL, `score` REAL NOT NULL, `details_json` TEXT NOT NULL, PRIMARY KEY(`scan_id`, `provider`))",
+        "fields": [
+          {
+            "fieldPath": "scanId",
+            "columnName": "scan_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "provider",
+            "columnName": "provider",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "score",
+            "columnName": "score",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "detailsJson",
+            "columnName": "details_json",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "scan_id",
+            "provider"
+          ]
+        }
+      },
+      {
+        "tableName": "threat_indicators",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`indicator_id` TEXT NOT NULL, `url` TEXT NOT NULL, `risk_score` REAL NOT NULL, `tags_json` TEXT NOT NULL, `last_seen_epoch` INTEGER, `source` TEXT NOT NULL, `fetched_at_epoch` INTEGER NOT NULL, PRIMARY KEY(`indicator_id`))",
+        "fields": [
+          {
+            "fieldPath": "indicatorId",
+            "columnName": "indicator_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "url",
+            "columnName": "url",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "riskScore",
+            "columnName": "risk_score",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tagsJson",
+            "columnName": "tags_json",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastSeenEpochMillis",
+            "columnName": "last_seen_epoch",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "source",
+            "columnName": "source",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fetchedAtEpochMillis",
+            "columnName": "fetched_at_epoch",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "indicator_id"
+          ]
+        }
+      },
+      {
+        "tableName": "monitored_assets",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `type` TEXT NOT NULL, `value` TEXT NOT NULL, `maskedValue` TEXT NOT NULL, `isVerified` INTEGER NOT NULL, `addedAt` INTEGER NOT NULL, `lastChecked` INTEGER, `exposureCount` INTEGER NOT NULL, `status` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "value",
+            "columnName": "value",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "maskedValue",
+            "columnName": "maskedValue",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isVerified",
+            "columnName": "isVerified",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "addedAt",
+            "columnName": "addedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastChecked",
+            "columnName": "lastChecked",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "exposureCount",
+            "columnName": "exposureCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "dark_web_exposures",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `assetId` TEXT NOT NULL, `assetType` TEXT NOT NULL, `maskedAsset` TEXT NOT NULL, `source` TEXT NOT NULL, `marketplace` TEXT, `forumName` TEXT, `pastebin` TEXT, `exposureType` TEXT NOT NULL, `exposedDataJson` TEXT NOT NULL, `severity` TEXT NOT NULL, `confidence` TEXT NOT NULL, `contextJson` TEXT, `relatedExposuresJson` TEXT NOT NULL, `discoveredAt` INTEGER NOT NULL, `estimatedExposureDate` INTEGER, `lastSeenAt` INTEGER, `isActive` INTEGER NOT NULL, `isAcknowledged` INTEGER NOT NULL, `acknowledgedAt` INTEGER, `remediationStatus` TEXT NOT NULL, `recommendationsJson` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "assetId",
+            "columnName": "assetId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "assetType",
+            "columnName": "assetType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "maskedAsset",
+            "columnName": "maskedAsset",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "source",
+            "columnName": "source",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "marketplace",
+            "columnName": "marketplace",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "forumName",
+            "columnName": "forumName",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "pastebin",
+            "columnName": "pastebin",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "exposureType",
+            "columnName": "exposureType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "exposedDataJson",
+            "columnName": "exposedDataJson",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "severity",
+            "columnName": "severity",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "confidence",
+            "columnName": "confidence",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "contextJson",
+            "columnName": "contextJson",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "relatedExposuresJson",
+            "columnName": "relatedExposuresJson",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "discoveredAt",
+            "columnName": "discoveredAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "estimatedExposureDate",
+            "columnName": "estimatedExposureDate",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "lastSeenAt",
+            "columnName": "lastSeenAt",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "isActive",
+            "columnName": "isActive",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isAcknowledged",
+            "columnName": "isAcknowledged",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "acknowledgedAt",
+            "columnName": "acknowledgedAt",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "remediationStatus",
+            "columnName": "remediationStatus",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "recommendationsJson",
+            "columnName": "recommendationsJson",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "dark_web_alerts",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `type` TEXT NOT NULL, `severity` TEXT NOT NULL, `title` TEXT NOT NULL, `message` TEXT NOT NULL, `exposureId` TEXT, `assetId` TEXT, `isRead` INTEGER NOT NULL, `isActioned` INTEGER NOT NULL, `createdAt` INTEGER NOT NULL, `expiresAt` INTEGER, `actionsJson` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "severity",
+            "columnName": "severity",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "message",
+            "columnName": "message",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "exposureId",
+            "columnName": "exposureId",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "assetId",
+            "columnName": "assetId",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "isRead",
+            "columnName": "isRead",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isActioned",
+            "columnName": "isActioned",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "expiresAt",
+            "columnName": "expiresAt",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "actionsJson",
+            "columnName": "actionsJson",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "privacy_events",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`event_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `package_name` TEXT NOT NULL, `source_id` TEXT NOT NULL, `event_type` TEXT NOT NULL, `resource_type` TEXT NOT NULL, `timestamp_epoch` INTEGER NOT NULL, `duration_ms` INTEGER, `visibility_context` TEXT NOT NULL, `session_id` TEXT, `screen_name` TEXT, `activity_class` TEXT, `confidence` TEXT NOT NULL, `priority` TEXT NOT NULL, `metadata_json` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "eventId",
+            "columnName": "event_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "packageName",
+            "columnName": "package_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sourceId",
+            "columnName": "source_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "eventType",
+            "columnName": "event_type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "resourceType",
+            "columnName": "resource_type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timestampEpochMillis",
+            "columnName": "timestamp_epoch",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "durationMs",
+            "columnName": "duration_ms",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "visibilityContext",
+            "columnName": "visibility_context",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sessionId",
+            "columnName": "session_id",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "screenName",
+            "columnName": "screen_name",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "activityClassName",
+            "columnName": "activity_class",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "confidence",
+            "columnName": "confidence",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "priority",
+            "columnName": "priority",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "metadataJson",
+            "columnName": "metadata_json",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "event_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_privacy_events_package_name",
+            "unique": false,
+            "columnNames": [
+              "package_name"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_privacy_events_package_name` ON `${TABLE_NAME}` (`package_name`)"
+          },
+          {
+            "name": "index_privacy_events_resource_type",
+            "unique": false,
+            "columnNames": [
+              "resource_type"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_privacy_events_resource_type` ON `${TABLE_NAME}` (`resource_type`)"
+          },
+          {
+            "name": "index_privacy_events_timestamp_epoch",
+            "unique": false,
+            "columnNames": [
+              "timestamp_epoch"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_privacy_events_timestamp_epoch` ON `${TABLE_NAME}` (`timestamp_epoch`)"
+          }
+        ]
+      },
+      {
+        "tableName": "privacy_baselines",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`package_name` TEXT NOT NULL, `resource_type` TEXT NOT NULL, `average_daily_count` REAL NOT NULL, `std_daily_count` REAL NOT NULL, `median_duration_ms` INTEGER, `last_seen_epoch` INTEGER, `last_seen_foreground_state` TEXT, `expected_visibility` TEXT, `permission_mismatch_score` REAL NOT NULL, `override_conflict_score` REAL NOT NULL, `updated_at_epoch` INTEGER NOT NULL, PRIMARY KEY(`package_name`, `resource_type`))",
+        "fields": [
+          {
+            "fieldPath": "packageName",
+            "columnName": "package_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "resourceType",
+            "columnName": "resource_type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "averageDailyCount",
+            "columnName": "average_daily_count",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "standardDeviationDailyCount",
+            "columnName": "std_daily_count",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "medianDurationMs",
+            "columnName": "median_duration_ms",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "lastSeenEpochMillis",
+            "columnName": "last_seen_epoch",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "lastSeenForegroundState",
+            "columnName": "last_seen_foreground_state",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "expectedVisibility",
+            "columnName": "expected_visibility",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "permissionMismatchScore",
+            "columnName": "permission_mismatch_score",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "overrideConflictScore",
+            "columnName": "override_conflict_score",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAtEpochMillis",
+            "columnName": "updated_at_epoch",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "package_name",
+            "resource_type"
+          ]
+        }
+      },
+      {
+        "tableName": "qr_scans",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `raw_content` TEXT NOT NULL, `content_type` TEXT NOT NULL, `parsed_content_json` TEXT NOT NULL, `is_safe` INTEGER NOT NULL, `threat_assessment_json` TEXT, `metadata_json` TEXT NOT NULL, `scanned_at_epoch` INTEGER NOT NULL, `source` TEXT NOT NULL, `was_blocked` INTEGER NOT NULL, `reported_reason` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rawContent",
+            "columnName": "raw_content",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "contentType",
+            "columnName": "content_type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parsedContentJson",
+            "columnName": "parsed_content_json",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isSafe",
+            "columnName": "is_safe",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "threatAssessmentJson",
+            "columnName": "threat_assessment_json",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "metadataJson",
+            "columnName": "metadata_json",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "scannedAtEpoch",
+            "columnName": "scanned_at_epoch",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "source",
+            "columnName": "source",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "wasBlocked",
+            "columnName": "was_blocked",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "reportedReason",
+            "columnName": "reported_reason",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_qr_scans_scanned_at_epoch",
+            "unique": false,
+            "columnNames": [
+              "scanned_at_epoch"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_qr_scans_scanned_at_epoch` ON `${TABLE_NAME}` (`scanned_at_epoch`)"
+          },
+          {
+            "name": "index_qr_scans_content_type",
+            "unique": false,
+            "columnNames": [
+              "content_type"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_qr_scans_content_type` ON `${TABLE_NAME}` (`content_type`)"
+          }
+        ]
+      },
+      {
+        "tableName": "blocked_threats",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `threat_type` TEXT NOT NULL, `source` TEXT NOT NULL, `target` TEXT NOT NULL, `severity` TEXT NOT NULL, `action` TEXT NOT NULL, `reason` TEXT NOT NULL, `blocked_at_epoch` INTEGER NOT NULL, `source_app` TEXT, `user_notified` INTEGER NOT NULL, `can_unblock` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "threatType",
+            "columnName": "threat_type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "source",
+            "columnName": "source",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "target",
+            "columnName": "target",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "severity",
+            "columnName": "severity",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "action",
+            "columnName": "action",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "reason",
+            "columnName": "reason",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "blockedAtEpoch",
+            "columnName": "blocked_at_epoch",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sourceApp",
+            "columnName": "source_app",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "userNotified",
+            "columnName": "user_notified",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "canUnblock",
+            "columnName": "can_unblock",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_blocked_threats_blocked_at_epoch",
+            "unique": false,
+            "columnNames": [
+              "blocked_at_epoch"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_blocked_threats_blocked_at_epoch` ON `${TABLE_NAME}` (`blocked_at_epoch`)"
+          },
+          {
+            "name": "index_blocked_threats_source",
+            "unique": false,
+            "columnNames": [
+              "source"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_blocked_threats_source` ON `${TABLE_NAME}` (`source`)"
+          },
+          {
+            "name": "index_blocked_threats_threat_type",
+            "unique": false,
+            "columnNames": [
+              "threat_type"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_blocked_threats_threat_type` ON `${TABLE_NAME}` (`threat_type`)"
+          }
+        ]
+      },
+      {
+        "tableName": "telemetry_events",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `event_json` TEXT NOT NULL, `created_at_epoch` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "eventJson",
+            "columnName": "event_json",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAtEpoch",
+            "columnName": "created_at_epoch",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '4c3ad394072774f6f5181eb6ae43b1e5')"
+    ]
+  }
+}

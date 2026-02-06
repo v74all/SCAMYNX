@@ -37,3 +37,11 @@ annotation class TelemetryClient
 @Qualifier
 @Retention(AnnotationRetention.RUNTIME)
 annotation class IoDispatcher
+
+@Qualifier
+@Retention(AnnotationRetention.RUNTIME)
+annotation class SupabaseRestClient
+
+@Qualifier
+@Retention(AnnotationRetention.RUNTIME)
+annotation class SupabaseRetrofit

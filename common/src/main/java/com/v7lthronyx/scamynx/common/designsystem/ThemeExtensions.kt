@@ -188,4 +188,24 @@ object ScamynxGradients {
             )
         }
     }
+
+    /**
+     * Elevated card gradient with more depth for floating components.
+     */
+    @Composable
+    fun cardElevated(): Brush {
+        val scheme = MaterialTheme.colorScheme
+        return remember(scheme.surface, scheme.surfaceVariant, scheme.primary) {
+            Brush.linearGradient(
+                colors = listOf(
+                    scheme.surfaceVariant.copy(alpha = 0.95f),
+                    scheme.surface,
+                    scheme.primary.copy(alpha = 0.08f),
+                    scheme.tertiaryContainer.copy(alpha = 0.12f),
+                ),
+                start = Offset(x = 0f, y = 0f),
+                end = Offset(x = 600f, y = 400f),
+            )
+        }
+    }
 }

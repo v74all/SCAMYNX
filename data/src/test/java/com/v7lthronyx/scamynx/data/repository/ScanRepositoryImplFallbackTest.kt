@@ -10,6 +10,7 @@ import com.v7lthronyx.scamynx.data.db.ThreatFeedDao
 import com.v7lthronyx.scamynx.data.db.ThreatIndicatorEntity
 import com.v7lthronyx.scamynx.data.db.VendorVerdictEntity
 import com.v7lthronyx.scamynx.data.heuristics.LocalHeuristicsEvaluator
+import com.v7lthronyx.scamynx.data.ai.AiCoPilot
 import com.v7lthronyx.scamynx.data.network.api.GoogleSafeBrowsingApi
 import com.v7lthronyx.scamynx.data.network.api.PhishStatsApi
 import com.v7lthronyx.scamynx.data.network.api.ThreatFoxApi
@@ -27,6 +28,8 @@ import com.v7lthronyx.scamynx.data.network.model.UrlHausLookupResponseDto
 import com.v7lthronyx.scamynx.data.network.model.UrlScanResultDto
 import com.v7lthronyx.scamynx.data.network.model.UrlScanSubmitRequestDto
 import com.v7lthronyx.scamynx.data.network.model.UrlScanSubmitResponseDto
+import com.v7lthronyx.scamynx.data.network.model.VirusTotalFileReportDto
+import com.v7lthronyx.scamynx.data.network.model.VirusTotalIpReportDto
 import com.v7lthronyx.scamynx.data.network.model.VirusTotalReportDto
 import com.v7lthronyx.scamynx.data.network.model.VirusTotalSubmitRequestDto
 import com.v7lthronyx.scamynx.data.network.model.VirusTotalSubmitResponseDto
@@ -53,6 +56,7 @@ import kotlin.collections.ArrayDeque
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import okhttp3.OkHttpClient
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class ScanRepositoryImplFallbackTest {
@@ -162,6 +166,22 @@ class ScanRepositoryImplFallbackTest {
     ): ScanRepositoryImpl {
         val json = Json { ignoreUnknownKeys = true }
         val dispatcher = StandardTestDispatcher(testScheduler)
+        val credentials = ApiCredentials(
+            virusTotalApiKey = "vt-key",
+            googleSafeBrowsingApiKey = "gsb-key",
+            urlScanApiKey = "urlscan-key",
+            telemetryEndpoint = null,
+            openAiApiKey = null,
+            groqApiKey = null,
+            openRouterApiKey = null,
+            huggingFaceApiKey = null,
+        )
+        val aiCoPilot = AiCoPilot(
+            httpClient = OkHttpClient(),
+            credentials = credentials,
+            json = json,
+            ioDispatcher = dispatcher,
+        )
 
         val heuristicsEvaluator = LocalHeuristicsEvaluator(
             threatFeedDao = FakeThreatFeedDao(),
@@ -182,14 +202,10 @@ class ScanRepositoryImplFallbackTest {
             fileStaticAnalyzer = FileStaticAnalyzer(),
             vpnConfigAnalyzer = VpnConfigAnalyzer(json),
             instagramAnalyzer = InstagramScamAnalyzer(),
+            aiCoPilot = aiCoPilot,
             scanDao = FakeScanDao(),
             urlNormalizer = UrlNormalizer(),
-            credentials = ApiCredentials(
-                virusTotalApiKey = "vt-key",
-                googleSafeBrowsingApiKey = "gsb-key",
-                urlScanApiKey = "urlscan-key",
-                telemetryEndpoint = null,
-            ),
+            credentials = credentials,
             json = json,
             ioDispatcher = dispatcher,
         )
@@ -222,6 +238,12 @@ class ScanRepositoryImplFallbackTest {
             @Suppress("UNCHECKED_CAST")
             return next as VirusTotalReportDto
         }
+
+        override suspend fun getFileReport(hash: String): VirusTotalFileReportDto =
+            VirusTotalFileReportDto()
+
+        override suspend fun getIpReport(ip: String): VirusTotalIpReportDto =
+            VirusTotalIpReportDto()
     }
 
     private class FakeGoogleSafeBrowsingApi(
