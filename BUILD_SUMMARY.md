@@ -1,6 +1,6 @@
 # 📱 SCAMYNX Release Build Summary
 
-**تاریخ Build:** October 18, 2025  
+**تاریخ Build:** February 6, 2026  
 **توسعه‌دهنده:** Aiden (V7LTHRONYX)  
 **Version:** 1.0.0-beta1 (versionCode: 1)
 
@@ -67,7 +67,7 @@ Serial Number:      8ff98bd45b4798f4
 
 **اعتبار:**
 ```
-Created:   October 18, 2025 (14:37:54 IRST)
+Created:   February 6, 2026 (14:37:54 IRST)
 Expires:   March 5, 2053 (14:37:54 IRST)
 Validity:  10,000 days (~27 سال)
 ```
@@ -243,7 +243,7 @@ versionName = "1.0.1"    // تغییر دهید
 
 ---
 
-**📅 Build Date:** October 18, 2025  
+**📅 Build Date:** February 6, 2026  
 **👤 Developer:** Aiden (V7LTHRONYX)  
 **🔐 Signed:** ✅ با keystore شخصی  
 **✨ Status:** Ready for testing

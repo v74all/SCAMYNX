@@ -126,5 +126,5 @@ For security-related inquiries:
 
 ---
 
-**Last Updated**: October 18, 2025  
-**Policy Version**: 1.0
+**Last Updated**: February 6, 2026  
+**Policy Version**: 1.1

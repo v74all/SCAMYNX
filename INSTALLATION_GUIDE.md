@@ -262,6 +262,6 @@ A: فقط با انتشار در Play Store یا استفاده از debug build
 
 ---
 
-**تاریخ:** October 18, 2025  
+**تاریخ:** February 6, 2026  
 **نسخه:** v1.0.0-beta1  
 **Developer:** Aiden (V7LTHRONYX)

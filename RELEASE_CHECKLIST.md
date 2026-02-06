@@ -226,5 +226,5 @@ Once all items are checked:
 
 ---
 
-**Last Updated:** October 18, 2025  
+**Last Updated:** February 6, 2026  
 **Release Version:** 1.0.0-beta1

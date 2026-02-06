@@ -1,6 +1,6 @@
 # 🎉 SCAMYNX v1.0.0-beta1 Release Notes
 
-**Release Date:** October 18, 2025  
+**Release Date**: February 6, 2026  
 **Developer:** Aiden (V7LTHRONYX)  
 **Status:** Beta Release
 
@@ -88,7 +88,7 @@ This is the first public beta release of SCAMYNX Android! After months of develo
 - `:common` - Shared components
 
 ### Dependencies
-- Kotlin 1.9.23
+- Kotlin 2.0.21
 - Jetpack Compose BOM
 - Hilt for DI
 - Room for database
@@ -125,7 +125,6 @@ cp secrets.defaults.properties secrets.properties
 ## 🐛 Known Issues
 
 ### Limitations
-- ⚠️ PDF report generation not yet implemented
 - ⚠️ Telemetry endpoint placeholder (AI features coming soon)
 - ⚠️ Some VPN config edge cases may not parse correctly
 - ⚠️ Rate limits apply to free API tiers
@@ -269,7 +268,7 @@ Help us by testing these scenarios:
 
 | Version | Release Date | Notes |
 |---------|-------------|-------|
-| 1.0.0-beta1 | Oct 18, 2025 | First public beta |
+| 1.0.0-beta1 | Feb 6, 2026 | First public beta |
 
 ---
 

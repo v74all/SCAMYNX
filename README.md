@@ -1,6 +1,6 @@
 # 🛡️ SCAMYNX (Android)
 
-**Version:** 1.0.0-beta2  
+**Version:** 1.0.0-beta1  
 **Developer:** Aiden ([V7LTHRONYX](https://github.com/v74all))  
 **License:** MIT
 
@@ -41,12 +41,13 @@ A powerful, native Kotlin scam detection platform for Android. SCAMYNX analyzes 
 
 ## 📦 Project Status
 
-- ✅ Complete multi-module Gradle project (AGP 8.3.2, Kotlin 1.9.23)
+- ✅ Complete multi-module Gradle project (AGP 8.13.1, Kotlin 2.0.21)
 - ✅ All analyzers implemented and tested
 - ✅ Database layer with migration support
 - ✅ API integrations fully functional
 - ✅ Background processing with WorkManager
 - ✅ Comprehensive test coverage
+- ✅ PDF Report Generation
 - 🔜 **AI-powered telemetry** (Coming in future releases)
 
 ## Module layout
@@ -55,10 +56,10 @@ A powerful, native Kotlin scam detection platform for Android. SCAMYNX analyzes 
 | `:app` | UI entry point, navigation, Hilt setup, Compose screens |
 | `:common` | Design system, shared UI utilities |
 | `:domain` | Pure Kotlin models and (future) use cases |
-| `:data` | Data sources, repositories, Room, Retrofit (stubbed) |
-| `:ml` | TensorFlow Lite integration & feature extraction (stubbed) |
-| `:networksecurity` | TLS / DNS / header analyzers (stubbed) |
-| `:report` | PDF/JSON export pipeline (stubbed) |
+| `:data` | Data sources, repositories, Room, Retrofit |
+| `:ml` | TensorFlow Lite integration & feature extraction |
+| `:networksecurity` | TLS / DNS / header analyzers |
+| `:report` | PDF/JSON export pipeline |
 
 ## 🚀 Getting Started
 
@@ -217,7 +218,6 @@ For production use, consider upgrading to paid API plans.
 ## 🐛 Known Issues
 
 - Telemetry endpoint not yet implemented (planned for future release)
-- PDF report generation in progress
 - Some edge cases in VPN config parsing
 
 Report bugs via [GitHub Issues](https://github.com/v74all/scamynx-android/issues).
